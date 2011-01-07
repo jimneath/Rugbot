@@ -44,8 +44,9 @@ on :channel, /ACTION(.*)pokes #{Regexp.escape(BOT_NAME)}/ do
     action channel, "giggles at #{nick}"
 end
 
-# http://twitter.com/stealthygecko/status/20892091689
-on :channel, /https?:\/\/twitter.com\/[\w-]+\/status\/(\d+)/ do |tweet_id|
+# http://twitter.com/stealthygecko/status/20892091689 or
+# http://twitter.com/#!/stealthygecko/status/20892091689
+on :channel, /https?:\/\/twitter.com\/#?!?\/?[\w-]+\/status\/(\d+)/ do |tweet_id|
   begin
     tweet = Twitter.status(tweet_id)
     user = tweet.user
